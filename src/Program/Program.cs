@@ -7,6 +7,8 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Ucu.Poo.GameOfLife
 {
@@ -18,7 +20,16 @@ namespace Ucu.Poo.GameOfLife
                 Assembly.GetExecutingAssembly().Location);
             string boardPath = Path.Combine(folder, "board.txt");
             // Reemplaza 👇 esta línea con tu código
-            Console.WriteLine(boardPath);
+            Tablero juego = new Tablero();
+            juego.CargarTablero(boardPath);
+            juego.Print();
+            while(true)
+            {
+                juego.SiguienteMovimiento();
+                juego.Print();
+
+                Thread.Sleep(300);
+            }
         }
     }
 }

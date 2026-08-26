@@ -3,7 +3,9 @@
 //     Copyright (c) Programación II. Derechos reservados.
 // </copyright>
 //------------------------------------------------------------------------------
+using System;
 using System.IO;
+using System.Text;
 
 namespace Ucu.Poo.GameOfLife
 {
@@ -20,10 +22,9 @@ namespace Ucu.Poo.GameOfLife
         /// <summary>
         /// Actualiza el estado del tablero.
         /// </summary>
-        /// <param name="tablero">El estado actual del tablero.</param>
-        public void SiguienteMovimiento(bool[,] tablero)
+        public void SiguienteMovimiento()
         {
-            bool[,] gameBoard = tablero;
+            bool[,] gameBoard = this.Table;
             int boardWidth = gameBoard.GetLength(0);
             int boardHeight = gameBoard.GetLength(1);
 
@@ -79,7 +80,7 @@ namespace Ucu.Poo.GameOfLife
         /// Metodo para cargar un tablero de un archivo.
         /// </summary>
         /// <param name="nombre">Nombre del archivo a cargar.</param>
-        public static void CargarTablero(string nombre)
+        public void CargarTablero(string nombre)
         {
             string url = nombre;
             string content = File.ReadAllText(url);
@@ -95,6 +96,35 @@ namespace Ucu.Poo.GameOfLife
                     }
                 }
             }
+            this.Table = board;
+        }
+
+        public void Print()
+        {
+            bool[,] b = this.Table; // Variable que representa el tablero
+            int width = b.GetLength(0); // Variable que representa el ancho del tablero
+            int height = b.GetLength(1); // Variable que representa altura del tablero
+
+            Console.Clear();
+            StringBuilder s = new StringBuilder();
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    if (b[x, y])
+                    {
+                        s.Append("|X|");
+                    }
+                    else
+                    {
+                        s.Append("___");
+                    }
+                }
+
+                s.Append("\n");
+            }
+
+            Console.WriteLine(s.ToString());
         }
     }
 }
