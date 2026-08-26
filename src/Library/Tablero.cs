@@ -17,7 +17,7 @@ namespace Ucu.Poo.GameOfLife
         /// <summary>
         /// Donde se guarda el tablero.
         /// </summary>
-        public bool[,] Table{ get; set; }
+        public bool[,] Table { get; set; }
 
         /// <summary>
         /// Actualiza el estado del tablero.
@@ -79,52 +79,10 @@ namespace Ucu.Poo.GameOfLife
         /// <summary>
         /// Metodo para cargar un tablero de un archivo.
         /// </summary>
-        /// <param name="nombre">Nombre del archivo a cargar.</param>
-        public void CargarTablero(string nombre)
+        /// <param name="tabla">Tabla a cargar.</param>
+        public void CargarTablero(bool[,] tabla)
         {
-            string url = nombre;
-            string content = File.ReadAllText(url);
-            string[] contentLines = content.Split('\n');
-            bool[,] board = new bool[contentLines.Length, contentLines[0].Length];
-            for (int y = 0; y < contentLines.Length; y++)
-            {
-                for (int x = 0; x < contentLines[y].Length; x++)
-                {
-                    if (contentLines[y][x] == '1')
-                    {
-                        board[x, y] = true;
-                    }
-                }
-            }
-            this.Table = board;
-        }
-
-        public void Print()
-        {
-            bool[,] b = this.Table; // Variable que representa el tablero
-            int width = b.GetLength(0); // Variable que representa el ancho del tablero
-            int height = b.GetLength(1); // Variable que representa altura del tablero
-
-            Console.Clear();
-            StringBuilder s = new StringBuilder();
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    if (b[x, y])
-                    {
-                        s.Append("|X|");
-                    }
-                    else
-                    {
-                        s.Append("___");
-                    }
-                }
-
-                s.Append("\n");
-            }
-
-            Console.WriteLine(s.ToString());
+            this.Table = tabla;
         }
     }
 }

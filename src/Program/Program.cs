@@ -21,12 +21,16 @@ namespace Ucu.Poo.GameOfLife
             string boardPath = Path.Combine(folder, "board.txt");
             // Reemplaza 👇 esta línea con tu código
             Tablero juego = new Tablero();
-            juego.CargarTablero(boardPath);
-            juego.Print();
+            Normalizador norm = new Normalizador();
+            Impresora impresora = new Impresora();
+
+            juego.CargarTablero(norm.CargarTabla(boardPath));
+            impresora.Print(juego.Table);
+
             while(true)
             {
                 juego.SiguienteMovimiento();
-                juego.Print();
+                impresora.Print(juego.Table);
 
                 Thread.Sleep(300);
             }
