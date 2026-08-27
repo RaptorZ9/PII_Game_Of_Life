@@ -18,9 +18,9 @@ namespace Ucu.Poo.GameOfLife
         /// Imprime la tabla proporcionada.
         /// </summary>
         /// <param name="tabla">Tabla a imprimir.</param>
-        public void Print(bool[,] tabla)
+        public void Print(Celula[,] tabla)
         {
-            bool[,] b = tabla; // Variable que representa el tablero
+            Celula[,] b = tabla; // Variable que representa el tablero
             int width = b.GetLength(0); // Variable que representa el ancho del tablero
             int height = b.GetLength(1); // Variable que representa altura del tablero
 
@@ -30,7 +30,7 @@ namespace Ucu.Poo.GameOfLife
             {
                 for (int x = 0; x < width; x++)
                 {
-                    if (b[x, y])
+                    if (b[x, y].Alive)
                     {
                         s.Append("|X|");
                     }

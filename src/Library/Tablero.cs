@@ -17,70 +17,34 @@ namespace Ucu.Poo.GameOfLife
         /// <summary>
         /// Donde se guarda el tablero.
         /// </summary>
-        public bool[,] Table { get; set; }
+        public Celula[,] Table { get; set; }
 
         /// <summary>
         /// Actualiza el estado del tablero.
         /// </summary>
         public void SiguienteMovimiento()
         {
-            bool[,] gameBoard = this.Table;
-            int boardWidth = gameBoard.GetLength(0);
-            int boardHeight = gameBoard.GetLength(1);
+            int boardWidth = this.Table.GetLength(0);
+            int boardHeight = this.Table.GetLength(1);
 
-            bool[,] cloneboard = new bool[boardWidth, boardHeight];
-            for (int x = 0; x < boardWidth; x++)
+            // Cambia los vecinos vivos de todas las celulas.
+            foreach (Celula celula in this.Table)
             {
-                for (int y = 0; y < boardHeight; y++)
-                {
-                    int aliveNeighbors = 0;
-                    for (int i = x - 1; i <= x + 1; i++)
-                    {
-                        for (int j = y - 1; j <= y + 1; j++)
-                            {
-                                if (i >= 0 && i < boardWidth && j >= 0 && j < boardHeight && gameBoard[i, j])
-                                {
-                                    aliveNeighbors++;
-                                }
-                            }
-                    }
-
-                    if (gameBoard[x, y])
-                    {
-                        aliveNeighbors--;
-                    }
-
-                    if (gameBoard[x, y] && aliveNeighbors < 2)
-                    {
-                        // Célula muere por baja población
-                        cloneboard[x, y] = false;
-                    }
-                    else if (gameBoard[x, y] && aliveNeighbors > 3)
-                    {
-                        // Célula muere por sobrepoblación
-                        cloneboard[x, y] = false;
-                    }
-                    else if (!gameBoard[x, y] && aliveNeighbors == 3)
-                    {
-                        // Célula nace por reproducción
-                        cloneboard[x, y] = true;
-                    }
-                    else
-                    {
-                        // Célula mantiene el estado que tenía
-                        cloneboard[x, y] = gameBoard[x, y];
-                    }
-                }
+                celula.CheckAliveNeighbors(this.Table, boardWidth, boardHeight);
             }
 
-            this.Table = cloneboard;
+            // Cambia el estado de todas las celulas.
+            foreach (Celula celula in this.Table)
+            {
+                celula.ChangeState();
+            }
         }
 
         /// <summary>
         /// Metodo para cargar un tablero de un archivo.
         /// </summary>
         /// <param name="tabla">Tabla a cargar.</param>
-        public void CargarTablero(bool[,] tabla)
+        public void CargarTablero(Celula[,] tabla)
         {
             this.Table = tabla;
         }
