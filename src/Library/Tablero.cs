@@ -19,6 +19,8 @@ namespace Ucu.Poo.GameOfLife
         /// </summary>
         public Celula[,] Table { get; set; }
 
+        /*agragar las propiedades width y height*/
+
         /// <summary>
         /// Actualiza el estado del tablero.
         /// </summary>
