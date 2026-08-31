@@ -14,6 +14,12 @@ namespace Ucu.Poo.GameOfLife
 {
     /// <summary>
     /// Clase para cargar un estado de tablero desde una fuente.
+    /// Justificación:
+    /// SRP, ya que su única responsabilidad es leer el archivo 
+    /// y transformarlo en células. 
+    /// Esta clase se mantiene independiente de Tablero, y si en el futuro 
+    /// se requiere leer desde otra fuente, solo se modifica únicamente 
+    /// esta clase.
     /// </summary>
     public class Normalizador
     {

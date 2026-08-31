@@ -14,10 +14,10 @@ namespace Ucu.Poo.GameOfLife
 {
     /// <summary>
     /// Clase dedicada a los comportamientos y propiedades de las celulas.
-    /// Justificacion: esta clase cumple con Expert: es quien tiene la informacion necesaria (su
-    /// posición y su estado) para calcular vecinos vivos y decidir si vive o
-    /// muere, entonces le asignamos esa responsabilidad a ella y no a Tablero.
-    /// También cumple SRP porque tiene una sola razón de cambio: si cambian
+    /// Justificación:
+    /// Expert: es quien tiene la informacion necesaria (su posición y su estado) 
+    /// para calcular vecinos vivos y decidir si vive o muere.
+    /// También cumple SRP porque tiene una sola razón de cambio,si cambian
     /// las reglas del juego, solo se modifica esta clase.
     /// </summary>
     public class Celula

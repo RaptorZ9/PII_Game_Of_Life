@@ -12,6 +12,12 @@ using System.Threading;
 
 namespace Ucu.Poo.GameOfLife
 {
+    /// <summary>
+    /// Justificación:
+    /// SRP: su única razón de cambio es cómo se instancian y conectan
+    /// los objetos del programa (Normalizador, Tablero e Impresora),
+    /// sin contener lógica de las reglas de Game of Life. 
+    /// </summary>
     class Program
     {
         static void Main(string[] args)

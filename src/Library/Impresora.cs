@@ -11,11 +11,16 @@ namespace Ucu.Poo.GameOfLife
 {
     /// <summary>
     /// Clase para imprimir.
+    /// Justificacion;
+    /// SRP: su única razón de cambio es la forma en que se muestra 
+    /// el tablero en pantalla. Se mantiene independiente de Tablero y Celula.
     /// </summary>
     public class Impresora
     {
         /// <summary>
         /// Imprime la tabla proporcionada.
+        /// Justificación:
+        /// SRP: su única razón de cambio es la forma en que se muestra el tablero en pantalla.
         /// </summary>
         /// <param name="tabla">Tabla a imprimir.</param>
         public void Imprimir(Celula[,] tabla)
