@@ -19,80 +19,80 @@ namespace Ucu.Poo.GameOfLife
     {
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="Celula"/>.
-        /// Crea la cedula dependiendo dando al parametro alive la inicializacion requerida.
+        /// Crea la cedula dependiendo dando al parametro viva la inicializacion requerida.
         /// </summary>
-        /// <param name="alive"> Valor requerido para la propiedad Alive. </param>
+        /// <param name="viva"> Valor requerido para la propiedad Viva. </param>
         /// <param name="x"> Posicion x de la celula. </param>
         /// <param name="y"> Posicion y de la celula. </param>
-        public Celula(bool alive, int x, int y)
+        public Celula(bool viva, int x, int y)
         {
-            this.Alive = alive;
-            this.AliveNeighbors = 0;
-            this.Position = new Tuple<int, int>(x, y);
+            this.Viva = viva;
+            this.VecinosVivos = 0;
+            this.Posicion = new Tuple<int, int>(x, y);
         }
 
         /// <summary>
         /// Estado actual de la celula.
         /// </summary>
-        public bool Alive { get; set; }
+        public bool Viva { get; set; }
 
         /// <summary>
         /// Guarda la posicion de la celula en el tablero.
         /// </summary>
-        public Tuple<int, int> Position { get; }
+        public Tuple<int, int> Posicion { get; }
 
         /// <summary>
         /// Numero de vecinos vivos.
         /// </summary>
-        public int AliveNeighbors { get; set; }
+        public int VecinosVivos { get; set; }
 
        /// <summary>
        /// Revisa la cantidad de vecinos vivos y actualiza la propiedad.
        /// </summary>
-       /// <param name="tabla"> La tabla donde se encuentra la celula.</param>
-       /// <param name="boardWidth"> El ancho de la tabla. </param>
-       /// <param name="boardHeight"> El alto de la tabla. </param>
-        public void CheckAliveNeighbors(Celula[,] tabla, int boardWidth, int boardHeight)
+       /// <param name="tablero"> La tablero donde se encuentra la celula.</param>
+       /// <param name="anchoTablero"> El ancho de la tablero. </param>
+       /// <param name="altoTablero"> El alto de la tablero. </param>
+        public void RevisarVecinosVivos(Celula[,] tablero, int anchoTablero, int altoTablero)
         {
-            int aliveNeighbors = 0;
-            for (int i = this.Position.Item1 - 1; i <= this.Position.Item1 + 1; i++)
+            int vecinosVivos = 0;
+            for (int i = this.Posicion.Item1 - 1; i <= this.Posicion.Item1 + 1; i++)
                     {
-                        for (int j = this.Position.Item2 - 1; j <= this.Position.Item2 + 1; j++)
+                        for (int j = this.Posicion.Item2 - 1; j <= this.Posicion.Item2 + 1; j++)
                             {
-                                if (i >= 0 && i < boardWidth && j >= 0 && j < boardHeight && tabla[i, j].Alive)
+                                if (i >= 0 && i < anchoTablero && j >= 0 && j < altoTablero && tablero[i, j].Viva)
                                 {
-                                    aliveNeighbors++;
+                                    vecinosVivos++;
                                 }
                             }
                     }
 
-            if (this.Alive)
+            if (this.Viva)
             {
-                aliveNeighbors--;
+                vecinosVivos--;
             }
 
-            this.AliveNeighbors = aliveNeighbors;
+            this.VecinosVivos = vecinosVivos;
         }
 
         /// <summary>
         /// Cambia el estado de la celula dependiendo de sus vecinos.
         /// </summary>
-        public void ChangeState()
+        public void CambiarEstado()
         {
-            if (this.Alive && this.AliveNeighbors < 2)
+            if (this.Viva && this.VecinosVivos < 2)
             {
                 // Célula muere por baja población
-                this.Alive = false;
+                this.Viva = false;
             }
-            else if (this.Alive && this.AliveNeighbors > 3)
+            else if (this.Viva && this.VecinosVivos > 3)
             {
                 // Célula muere por sobrepoblación
-                this.Alive = false;
+                this.Viva = false;
             }
-            else if (!this.Alive && this.AliveNeighbors == 3)
+            else if (!this.Viva && this.VecinosVivos == 3)
             {
                 // Célula nace por reproducción
-                this.Alive = true;
+                this.Viva = true;
             }
         }
     }

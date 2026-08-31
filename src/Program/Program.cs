@@ -25,12 +25,12 @@ namespace Ucu.Poo.GameOfLife
             Impresora impresora = new Impresora();
 
             juego.CargarTablero(norm.CargarTabla(boardPath));
-            impresora.Print(juego.Table);
+            impresora.Imprimir(juego.Tabla);
 
             while(true)
             {
                 juego.SiguienteMovimiento();
-                impresora.Print(juego.Table);
+                impresora.Imprimir(juego.Tabla);
 
                 Thread.Sleep(300);
             }

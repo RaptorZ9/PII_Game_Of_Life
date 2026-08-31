@@ -18,11 +18,11 @@ namespace Ucu.Poo.GameOfLife
         /// Imprime la tabla proporcionada.
         /// </summary>
         /// <param name="tabla">Tabla a imprimir.</param>
-        public void Print(Celula[,] tabla)
+        public void Imprimir(Celula[,] tabla)
         {
-            Celula[,] b = tabla; // Variable que representa el tablero
-            int width = b.GetLength(0); // Variable que representa el ancho del tablero
-            int height = b.GetLength(1); // Variable que representa altura del tablero
+            Celula[,] tablero = tabla; // Variable que representa el tablero
+            int width = tablero.GetLength(0); // Variable que representa el ancho del tablero
+            int height = tablero.GetLength(1); // Variable que representa altura del tablero
 
             Console.Clear();
             StringBuilder s = new StringBuilder();
@@ -30,7 +30,7 @@ namespace Ucu.Poo.GameOfLife
             {
                 for (int x = 0; x < width; x++)
                 {
-                    if (b[x, y].Alive)
+                    if (tablero[x, y].Viva)
                     {
                         s.Append("|X|");
                     }
